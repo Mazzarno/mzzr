@@ -27,6 +27,16 @@ html {
   height: 0;
   display: none;
 }
+
+#gradient-canvas {
+  width: 100%;
+  height: 100%;
+  --gradient-color-1: #f8f9fa;
+  --gradient-color-2: #e9ecef;
+  --gradient-color-3: #dee2e6;
+  --gradient-color-4: #ced4da;
+}
+
 .soni {
   width: 100%;
   height: 100%;

@@ -10,7 +10,8 @@ import { CameraProvider, useCamera } from "./CameraContext";
 import { LumosProvider } from "./LumosContext";
 import Text from "./Text.jsx";
 import Lumos from "./Lumos.jsx";
-
+import LumosMenu from "./LumosMenu.jsx";
+import Menu from "./Menu";
 export default function Scene() {
   return (
     <CameraProvider>
@@ -39,7 +40,7 @@ function MainScene() {
       <div className="scanlines"></div>
       <div className="flicker"></div>
       <div className="noisy"></div>
-      <Canvas shadows>
+      <Canvas shadows >
         <ambientLight intensity={2} />
         <directionalLight intensity={1} position={[0, 0, 10]} />
         <Environment preset="sunset" />
@@ -50,12 +51,14 @@ function MainScene() {
         <Plane
           receiveShadow
           args={[100, 100]}
-          position={[50, 0, 50]}
-          rotation={[0, Math.PI / -2, 0]}
+          position={[0, 0, -100]}
+          rotation={[0, 0, 0]}
         >
           <meshToonMaterial color="#adb5bd" receiveShadow />
         </Plane>
         <TextResponsiveGroup />
+        <Menu />
+        <LumosMenu />
         <Lumos />
         <color attach="background" args={["#e9ecef"]} />
       </Canvas>

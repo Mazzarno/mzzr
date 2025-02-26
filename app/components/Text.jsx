@@ -1,14 +1,14 @@
 "use client";
 import { Float } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
-import { useState } from "react";
-import { gsap } from "gsap";
-import { useThree } from "@react-three/fiber";
+import { useState, useRef } from "react";
+import gsap from "gsap";
+import { useThree, useFrame } from "@react-three/fiber";
 import { useCamera } from "./CameraContext";
 import { useLumos } from "./LumosContext";
 import Font1Letter from "./Font1Letter";
 import Font2Letter from "./Font2Letter";
-import { useRouter } from "next/navigation";
+
 export default function Text() {
   return (
     <>
@@ -212,14 +212,15 @@ function FloatingLetter() {
 }
 
 function PressStart() {
-  const router = useRouter();
   const { camera } = useThree();
   const { triggerStartupAnimation } = useCamera();
+
   const handlePressStart = () => {
     triggerStartupAnimation();
-    router.push("/menu");
+    gsap.to(camera.position, {
+      z: -40,
+    });
   };
-
   return (
     <motion.group
       position={[-7, -8, 0]}

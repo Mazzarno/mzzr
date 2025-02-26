@@ -14,7 +14,6 @@ export default function Lumos() {
       gsap.to(lightRef.current.position, {
         x: posX,
         y: posY,
-        z: 10,
         duration: 2.5,
         ease: "power2",
       });
@@ -53,12 +52,12 @@ export default function Lumos() {
   return (
     <pointLight
       ref={lightRef}
-      position={[0, 0, 10]}
+      position={[0, 0, -90]}
       castShadow
-      intensity={100}
+      intensity={50}
       shadow-mapSize={[2048, 2048]}
       shadow-camera-near={0.5}
-      shadow-camera-far={10000}
+      shadow-camera-far={100}
     />
   );
 }
