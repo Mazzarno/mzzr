@@ -22,6 +22,10 @@ export default function Menu() {
     triggerStartupAnimation();
     router.push("/game");
   };
+  const goResume = () => {
+    triggerStartupAnimation();
+    router.push("/resume");
+  };
   const returnScene = () => {
     triggerStartupAnimation();
     gsap.to(camera.position, {
@@ -73,6 +77,7 @@ export default function Menu() {
       </motion.group>
       {/*  PC  */}
       <motion.group
+        onClick={goResume}
         position={[-6, 3, -98]}
         whileTap={{
           scaleY: 0.9,
@@ -105,13 +110,7 @@ export default function Menu() {
         </Float>
       </motion.group>
       {/*  Dualshock  */}
-      <motion.group
-        position={[6, 3, -98]}
-        onPointerDown={(e) => {
-          e.stopPropagation();
-          goGame();
-        }}
-      >
+      <motion.group position={[6, 3, -98]} onClick={goGame}>
         <Float
           speed={floatSpeed}
           rotationIntensity={floatRotationIntensity}
