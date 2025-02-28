@@ -1,11 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import {
-  PerspectiveCamera,
-  Environment,
-  Plane,
-} from "@react-three/drei";
+import { PerspectiveCamera, Environment, Plane } from "@react-three/drei";
 import { CameraProvider, useCamera } from "./CameraContext";
 import { LumosProvider } from "./LumosContext";
 import Text from "./Text.jsx";
@@ -24,23 +20,20 @@ export default function Scene() {
 
 function MainScene() {
   const { triggerStartupAnimation } = useCamera();
-
   useEffect(() => {
     const handler = () => {
       if (document.visibilityState === "visible") triggerStartupAnimation();
     };
-
     document.addEventListener("visibilitychange", handler);
     return () => document.removeEventListener("visibilitychange", handler);
   }, [triggerStartupAnimation]);
 
   return (
     <>
-      <div className="soni"></div>
-      <div className="scanlines"></div>
-      <div className="flicker"></div>
-      <div className="noisy"></div>
-      <Canvas shadows >
+      <div className="soni" />
+      <div className="flicker" />
+      <div className="noisy" />
+      <Canvas shadows>
         <ambientLight intensity={2} />
         <directionalLight intensity={1} position={[0, 0, 10]} />
         <Environment preset="sunset" />

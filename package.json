@@ -24,6 +24,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-gbajs": "^1.0.4",
+    "react-hotkeys-hook": "^4.6.1",
     "three": "^0.173.0"
   },
   "devDependencies": {

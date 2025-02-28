@@ -9,7 +9,6 @@ export default function Lumos() {
   const updatePosition = (x, y) => {
     const posX = (x / window.innerWidth) * 30 - 15;
     const posY = -(y / window.innerHeight) * 10 + 5;
-
     if (lightRef.current) {
       gsap.to(lightRef.current.position, {
         x: posX,
@@ -20,7 +19,6 @@ export default function Lumos() {
       });
     }
   };
-
   useEffect(() => {
     const handleMouseMove = (event) => {
       setInputPos({ x: event.clientX, y: event.clientY });

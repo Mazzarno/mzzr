@@ -1,13 +1,12 @@
 "use client";
-import { motion } from "framer-motion-3d";
-import { Gltf, Float, useGLTF } from "@react-three/drei";
-
-import { useThree, useFrame } from "@react-three/fiber";
+import { Gltf, Float } from "@react-three/drei";
+import React, { useRef } from "react";
+import { useThree } from "@react-three/fiber";
 import { useRouter } from "next/navigation";
 import { useCamera } from "./CameraContext";
 import Font2Letter from "./Font2Letter";
-import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useHotkeys } from "react-hotkeys-hook";
 
 export default function Menu() {
   const floatSpeed = 2;
@@ -18,28 +17,50 @@ export default function Menu() {
   const { camera } = useThree();
   const { triggerStartupAnimation } = useCamera();
 
+  useHotkeys("escape, backspace, down, s", () => {
+    returnScene();
+  });
+
   const goGame = () => {
     triggerStartupAnimation();
     router.push("/game");
   };
   const goResume = () => {
-    triggerStartupAnimation();
-    router.push("/resume");
+    window.open("https://alexis-germain.fr/resume", "_blank");
   };
   const returnScene = () => {
     triggerStartupAnimation();
     gsap.to(camera.position, {
       z: 20,
     });
-    gsap.to(camera.rotation, {
-      y: 0,
-    });
   };
   return (
     <>
+      {/*  PC  */}
+      <group onClick={goResume} position={[-3, 2.5, -98]}>
+        <Float
+          speed={floatSpeed}
+          rotationIntensity={floatRotationIntensity}
+          floatIntensity={floatIntensities}
+          floatingRange={floatRange}
+        >
+          <RotateGroup position={[0, -0.75, 0]}>
+            <Gltf
+              rotation={[0.2, 0, 0]}
+              src={"models/Notebook.glb"}
+              scale={1.2}
+              castShadow
+              receiveShadow
+            />
+          </RotateGroup>
+          <group position={[0, -1.6, -1.4]} rotation={[0, 0, 0]} scale={0.3}>
+            <Font2Letter Font2Letter="RESUME" position={[-5, 0, 0]} />
+          </group>
+        </Float>
+      </group>
       {/*  NOKIA  */}
-      <motion.group
-        position={[0, 3, -98]}
+      <group
+        position={[3, 2.5, -98]}
         whileTap={{
           scaleY: 0.9,
           scaleZ: 0.9,
@@ -61,66 +82,25 @@ export default function Menu() {
               receiveShadow
             />
           </RotateGroup>
-          <motion.group
-            position={[-1.4, -1.7, 0]}
-            rotation={[0, 0, 0]}
-            scale={0.3}
-          >
+          <group position={[-1.4, -1.7, 0]} rotation={[0, 0, 0]} scale={0.3}>
             <Font2Letter
               Font2Letter="CONTACT"
               position={[0, 0, 0]}
               castShadow
               receiveShadow
             />
-          </motion.group>
+          </group>
         </Float>
-      </motion.group>
-      {/*  PC  */}
-      <motion.group
-        onClick={goResume}
-        position={[-6, 3, -98]}
-        whileTap={{
-          scaleY: 0.9,
-          scaleZ: 0.9,
-          scaleX: 0.9,
-        }}
-      >
-        <Float
-          speed={floatSpeed}
-          rotationIntensity={floatRotationIntensity}
-          floatIntensity={floatIntensities}
-          floatingRange={floatRange}
-        >
-          <RotateGroup position={[0, -0.75, 0]}>
-            <Gltf
-              rotation={[0.2, 0, 0]}
-              src={"models/Notebook.glb"}
-              scale={1.2}
-              castShadow
-              receiveShadow
-            />
-          </RotateGroup>
-          <motion.group
-            position={[0, -1.6, -1.4]}
-            rotation={[0, 0, 0]}
-            scale={0.3}
-          >
-            <Font2Letter Font2Letter="RESUME" position={[-5, 0, 0]} />
-          </motion.group>
-        </Float>
-      </motion.group>
+      </group>
       {/*  Dualshock  */}
-      <motion.group position={[6, 3, -98]} onClick={goGame}>
+      <group position={[-3, -2.5, -98]} onClick={goGame}>
         <Float
           speed={floatSpeed}
           rotationIntensity={floatRotationIntensity}
           floatIntensity={floatIntensities}
           floatingRange={floatRange}
         >
-          <RotateGroup
-            rotation={[0, Math.PI / 2, Math.PI / 2]}
-            position={[0, -0.1, 0]}
-          >
+          <RotateGroup rotation={[0, 0, Math.PI / 2]} position={[0, -0.1, 0]}>
             <Gltf
               rotation={[Math.PI / 2, Math.PI / 2, 0]}
               src={"models/DualShock.glb"}
@@ -129,87 +109,20 @@ export default function Menu() {
               receiveShadow
             />
           </RotateGroup>
-          <motion.group
-            position={[-1.3, -1.6, -1.4]}
-            rotation={[0, 0, 0]}
-            scale={0.3}
-          >
+          <group position={[-1.3, -1.6, -1.4]} rotation={[0, 0, 0]} scale={0.3}>
             <Font2Letter Font2Letter="GAME" position={[2, 0, 0]} />
-          </motion.group>
+          </group>
         </Float>
-      </motion.group>
-      {/*  Case  */}
-      <motion.group
-        position={[-6, -2.5, -98]}
-        whileTap={{
-          scaleY: 0.9,
-          scaleZ: 0.9,
-          scaleX: 0.9,
-        }}
-      >
-        <Float
-          speed={floatSpeed}
-          rotationIntensity={floatRotationIntensity}
-          floatIntensity={floatIntensities}
-          floatingRange={floatRange}
-        >
-          <RotateGroup rotation={[0, 0, 0]} position={[0, 0, 0]}>
-            <Gltf
-              rotation={[0, 0, 0]}
-              src={"models/Case.glb"}
-              scale={2}
-              castShadow
-              receiveShadow
-            />
-          </RotateGroup>
-          <motion.group
-            position={[-1.9, -1.5, 0]}
-            rotation={[0, 0, 0]}
-            scale={0.3}
-          >
-            <Font2Letter Font2Letter="PORTFOLIO" position={[0, 0, 0]} />
-          </motion.group>
-        </Float>
-      </motion.group>
-      {/*  LIGHT  */}
-      <motion.group
-        position={[0, -2.9, -98]}
-        whileTap={{
-          scaleY: 0.9,
-          scaleZ: 0.9,
-          scaleX: 0.9,
-        }}
-        onTap={() => handleToggleLight()}
-      >
-        <Float
-          speed={floatSpeed}
-          rotationIntensity={floatRotationIntensity}
-          floatIntensity={floatIntensities}
-          floatingRange={floatRange}
-        >
-          <RotateGroup position={[0, 0, 0]}>
-            <Gltf
-              rotation={[Math.PI / 2, Math.PI, 0]}
-              src={"models/Light2.glb"}
-              scale={10}
-              castShadow
-              receiveShadow
-            />
-          </RotateGroup>
-          <motion.group position={[-1, -1, 0]} rotation={[0, 0, 0]} scale={0.3}>
-            <Font2Letter Font2Letter="LIGHT" position={[0, 0, 0]} />
-          </motion.group>
-        </Float>
-      </motion.group>
+      </group>
       {/*  BACK */}
-      <motion.group
-        position={[6, -2.5, -98]}
+      <group
+        onClick={returnScene}
+        position={[3, -2.5, -98]}
         whileTap={{
           scaleY: 0.9,
           scaleZ: 0.9,
           scaleX: 0.9,
         }}
-        onTap={() => returnScene()}
       >
         <Float
           speed={floatSpeed}
@@ -226,20 +139,16 @@ export default function Menu() {
               receiveShadow
             />
           </RotateGroup>
-          <motion.group
-            position={[0, -1.6, -1.4]}
-            rotation={[0, 0, 0]}
-            scale={0.3}
-          >
+          <group position={[0, -1.6, -1.4]} rotation={[0, 0, 0]} scale={0.3}>
             <Font2Letter
               Font2Letter="BACK"
               position={[-1.5, 0, 0]}
               castShadow
               receiveShadow
             />
-          </motion.group>
+          </group>
         </Float>
-      </motion.group>
+      </group>
     </>
   );
 }

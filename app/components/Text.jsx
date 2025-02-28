@@ -1,7 +1,8 @@
 "use client";
 import { Float } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import gsap from "gsap";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useCamera } from "./CameraContext";
@@ -214,6 +215,9 @@ function FloatingLetter() {
 function PressStart() {
   const { camera } = useThree();
   const { triggerStartupAnimation } = useCamera();
+  useHotkeys("enter, space, up, z", () => {
+    handlePressStart();
+  });
 
   const handlePressStart = () => {
     triggerStartupAnimation();
@@ -221,6 +225,7 @@ function PressStart() {
       z: -40,
     });
   };
+
   return (
     <motion.group
       position={[-7, -8, 0]}

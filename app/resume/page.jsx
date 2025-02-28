@@ -1,22 +1,18 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { Globe, Mail, Phone, MapPin } from "lucide-react";
-import styles from "./cv.module.css";
 import gsap from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
+
 export default function CV() {
   const cvRef = useRef(null);
-  const titleRef = useRef(null);
-  const sectionRefs = useRef([]);
-  useEffect(() => {
-    // Permettre le défilement uniquement pour cette page
-    if (cvRef.current) {
-      const handleScroll = (e) => {
-        e.stopPropagation();
-      };
+  gsap.registerPlugin(TextPlugin);
 
+  useEffect(() => {
+    if (cvRef.current) {
+      const handleScroll = (e) => e.stopPropagation();
       cvRef.current.addEventListener("wheel", handleScroll);
       cvRef.current.addEventListener("touchmove", handleScroll);
-
       return () => {
         if (cvRef.current) {
           cvRef.current.removeEventListener("wheel", handleScroll);
@@ -25,231 +21,504 @@ export default function CV() {
       };
     }
   }, []);
+
   useEffect(() => {
-    gsap.from(titleRef.current, {
-      opacity: 0,
+    const tl = gsap.timeline();
+
+
+    tl.from("#title", {
       y: -20,
-      duration: 1,
+      opacity: 0,
+      duration: 0.5,
       ease: "power3.out",
     });
-    sectionRefs.current.forEach((section, index) => {
-      gsap.from(section, {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        delay: index * 0.3,
-        ease: "power3.out",
-      });
+    tl.from("#contact1", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#contact2", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#contact3", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#contact4", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#experienceTitle", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#job1", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#period1", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.to("#exp1Item1", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Conception et développement de sites vitrines.",
+      ease: "none",
+    });
+    tl.to("#exp1Item2", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Maintenance et optimisation de sites existants.",
+      ease: "none",
+    });
+    tl.to("#exp1Item3", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Intégration de solutions personnalisées pour répondre à des besoins spécifiques.",
+      ease: "none",
+    });
+    tl.to("#exp1Item4", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Support technique et formation pour garantir l'autonomie des clients.",
+      ease: "none",
+    });
+
+ 
+    tl.from("#job2", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#period2", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.to("#exp2Item1", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Conception, développement, gestion et maintenance des sites web français.",
+      ease: "none",
+    });
+    tl.to("#exp2Item2", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Collaboration internationale : coordination avec ASUS Europe et application des correctifs via Jira, en lien avec Taiwan.",
+      ease: "none",
+    });
+    tl.to("#exp2Item3", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Support et traduction : adaptation des contenus marketing et assistance technique pour les campagnes européennes.",
+      ease: "none",
+    });
+    tl.to("#exp2Item4", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Participation aux réunions marketing : contribution aux stratégies digitales et intégration des initiatives sur les plateformes web.",
+      ease: "none",
+    });
+
+    tl.from("#job3", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#period3", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.to("#exp3Item1", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Conception, développement, gestion et maintenance des sites web.",
+      ease: "none",
+    });
+    tl.to("#exp3Item2", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Formation de l'équipe sur HTML, CSS et WordPress.",
+      ease: "none",
+    });
+    tl.to("#exp3Item3", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Consultation et analyse des besoins de l'entreprise cliente.",
+      ease: "none",
+    });
+
+    tl.from("#educationTitle", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#job4", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.from("#period4", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.to("#eduItem1", {
+      duration: 0.5,
+      opacity: 1,
+      text: "HTML 5 / CSS 3 / JavaScript ES6",
+      ease: "none",
+    });
+    tl.to("#eduItem2", {
+      duration: 0.5,
+      opacity: 1,
+      text: "CMS Wordpress / Drupal",
+      ease: "none",
+    });
+    tl.to("#eduItem3", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Intégration et gestion MySQL BDD",
+      ease: "none",
+    });
+
+    tl.from("#skillsTitle", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.to("#softSkill1", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Empathique, Autonome, Coopératif, Créatif.",
+      ease: "none",
+    });
+    tl.to("#softSkill2", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Idéation, Brainstorming, Design, Maquettage, Prototypage, Conception, Développement, Optimisation, Support technique.",
+      ease: "none",
+    });
+
+    tl.from("#toolsTitle", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    tl.to("#tool1", {
+      duration: 0.5,
+      opacity: 1,
+      text: "My Framework • Vue/Nuxt3, React/Next, AngularJs",
+      ease: "none",
+    });
+    tl.to("#tool2", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Data • SQL, GraphQL",
+      ease: "none",
+    });
+    tl.to("#tool3", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Back-end • Node.Js, Express",
+      ease: "none",
+    });
+    tl.to("#tool4", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Design • Figma, PhotoShop",
+      ease: "none",
+    });
+    tl.to("#tool5", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Management • JIRA, Trello",
+      ease: "none",
+    });
+    tl.to("#tool6", {
+      duration: 0.5,
+      opacity: 1,
+      text: "Animation • GSAP, Motion",
+      ease: "none",
+    });
+    tl.to("#tool7", {
+      duration: 0.5,
+      opacity: 1,
+      text: "WebGL • Three, Tres, Fiber",
+      ease: "none",
+    });
+    tl.to("#tool8", {
+      duration: 0.5,
+      opacity: 1,
+      text: "CMS • Strapi",
+      ease: "none",
+    });
+    tl.to("#tool9", {
+      duration: 0.5,
+      opacity: 1,
+      text: "3D • Blender",
+      ease: "none",
     });
   }, []);
+
   return (
-    <div ref={cvRef} className={styles.cvContainer}>
-      <div className={styles.cvContent}>
-        {/* En-tête */}
-        <header className={styles.header}>
-          <div className={styles.headerLeft}>
-            <h1 className={styles.name}>Alexis GERMAIN, Développeur Web.</h1>
+    <div ref={cvRef} className="cvContainer">
+      <div className="cvContent">
+        {/* HEADER */}
+        <header className="header">
+          <div className="headerLeft">
+            <h1 id="title" className="name">
+              Alexis GERMAIN, Développeur Web.
+            </h1>
           </div>
-          <div className={styles.headerRight}>
-            <div className={styles.contactItem}>
+          <div className="headerRight">
+            <div id="contact1" className="contactItem">
               <span>alexis-germain.fr</span>
               <Globe className="w-4 h-4" />
             </div>
-            <div className={styles.contactItem}>
+            <div id="contact2" className="contactItem">
               <span>contact@alexis-germain.fr</span>
               <Mail className="w-4 h-4" />
             </div>
-            <div className={styles.contactItem}>
+            <div id="contact3" className="contactItem">
               <span>06.08.53.52.80</span>
               <Phone className="w-4 h-4" />
             </div>
-            <div className={styles.contactItem}>
-              <span>Bruyères-sur-Oise, 95820</span>{" "}
+            <div id="contact4" className="contactItem">
+              <span>Bruyères-sur-Oise, 95820</span>
               <MapPin className="w-4 h-4" />
             </div>
           </div>
         </header>
 
-        {/* Section Expérience */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Experience</h2>
-
+        {/* EXPERIENCE SECTION */}
+        <section className="section">
+          <h2 id="experienceTitle" className="sectionTitle">
+            Experience
+          </h2>
           {/* Auto-Entreprise */}
-          <div className={styles.experienceItem}>
-            <div className={styles.experienceHeader}>
-              <h3 className={styles.jobTitle}>
+          <div className="experienceItem">
+            <div className="experienceHeader">
+              <h3 id="job1" className="jobTitle">
                 Auto-Entreprise{" "}
-                <span className={styles.jobRole}>
+                <span id="jobRole1" className="jobRole">
                   • Développeur Web Freelance
                 </span>
               </h3>
             </div>
-            <div className={styles.periodRow}>
-              <span className={styles.period}>
+            <div className="periodRow">
+              <span id="period1" className="period">
                 2019 - 2022 | 2022 - Aujourd'hui
               </span>
             </div>
-            <ul className={styles.experienceList}>
-              <li>Conception et développement de sites vitrines.</li>
-              <li>Maintenance et optimisation de sites existants.</li>
-              <li>
-                Intégration de solutions personnalisées pour répondre à des
-                besoins spécifiques.
+            <ul className="experienceList">
+              <li id="exp1Item1" style={{ opacity: 0 }}>
+                {" "}
               </li>
-              <li>
-                Support technique et formation pour garantir l'autonomie des
-                clients.
+              <li id="exp1Item2" style={{ opacity: 0 }}>
+                {" "}
+              </li>
+              <li id="exp1Item3" style={{ opacity: 0 }}>
+                {" "}
+              </li>
+              <li id="exp1Item4" style={{ opacity: 0 }}>
+                {" "}
               </li>
             </ul>
           </div>
 
           {/* ASUS France */}
-          <div className={styles.experienceItem}>
-            <div className={styles.experienceHeader}>
-              <h3 className={styles.jobTitle}>
-                ASUS France <span className={styles.jobRole}>• Webmaster</span>
+          <div className="experienceItem">
+            <div className="experienceHeader">
+              <h3 id="job2" className="jobTitle">
+                ASUS France{" "}
+                <span id="jobRole2" className="jobRole">
+                  • Webmaster
+                </span>
               </h3>
             </div>
-            <div className={styles.periodRow}>
-              <span className={styles.period}>Mai 2022 - Août 2022</span>
+            <div className="periodRow">
+              <span id="period2" className="period">
+                Mai 2022 - Août 2022
+              </span>
             </div>
-            <ul className={styles.experienceList}>
-              <li>
-                Conception, développement, gestion et maintenance des sites web
-                français.
+            <ul className="experienceList">
+              <li id="exp2Item1" style={{ opacity: 0 }}>
+                {" "}
               </li>
-              <li>
-                Collaboration internationale : coordination avec ASUS Europe et
-                application des correctifs techniques via Jira, en lien avec
-                Taiwan.
+              <li id="exp2Item2" style={{ opacity: 0 }}>
+                {" "}
               </li>
-              <li>
-                Support et traduction : adaptation des contenus marketing en
-                français et assistance technique pour les campagnes européennes.
+              <li id="exp2Item3" style={{ opacity: 0 }}>
+                {" "}
               </li>
-              <li>
-                Participation aux réunions marketing : contribution aux
-                stratégies digitales et intégration des initiatives marketing
-                sur les plateformes web.
+              <li id="exp2Item4" style={{ opacity: 0 }}>
+                {" "}
               </li>
             </ul>
           </div>
 
           {/* MGS Informatique */}
-          <div className={styles.experienceItem}>
-            <div className={styles.experienceHeader}>
-              <h3 className={styles.jobTitle}>
+          <div className="experienceItem">
+            <div className="experienceHeader">
+              <h3 id="job3" className="jobTitle">
                 MGS Informatique{" "}
-                <span className={styles.jobRole}>• Développeur Web Junior</span>
+                <span id="jobRole3" className="jobRole">
+                  • Développeur Web Junior
+                </span>
               </h3>
             </div>
-            <div className={styles.periodRow}>
-              <span className={styles.period}>
+            <div className="periodRow">
+              <span id="period3" className="period">
                 Septembre 2018 - Février 2019
               </span>
             </div>
-            <ul className={styles.experienceList}>
-              <li>
-                Conception, développement, gestion et maintenance des sites web.
+            <ul className="experienceList">
+              <li id="exp3Item1" style={{ opacity: 0 }}>
+                {" "}
               </li>
-              <li>Formation de l'équipe sur HTML, CSS et WordPress.</li>
-              <li>
-                Consultation et analyse des besoins de l'entreprise cliente.
+              <li id="exp3Item2" style={{ opacity: 0 }}>
+                {" "}
+              </li>
+              <li id="exp3Item3" style={{ opacity: 0 }}>
+                {" "}
               </li>
             </ul>
           </div>
         </section>
 
-        {/* Section Education */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Education</h2>
-
-          <div className={styles.educationItem}>
-            <div className={styles.experienceHeader}>
-              <h3 className={styles.jobTitle}>
+        {/* EDUCATION SECTION */}
+        <section className="section">
+          <h2 id="educationTitle" className="sectionTitle">
+            Education
+          </h2>
+          <div className="educationItem">
+            <div className="experienceHeader">
+              <h3 id="job4" className="jobTitle">
                 IFOCOP{" "}
-                <span className={styles.jobRole}>
+                <span id="jobRole4" className="jobRole">
                   • Formation développeur intégrateur Web
                 </span>
               </h3>
             </div>
-            <div className={styles.periodRow}>
-              <span className={styles.period}>
+            <div className="periodRow">
+              <span id="period4" className="period">
                 Septembre 2018 - Février 2019
               </span>
             </div>
-            <ul className={styles.experienceList}>
-              <li>HTML 5 / CSS 3 / JavaScript ES6</li>
-              <li>CMS Wordpress / Drupal</li>
-              <li>Intégration et gestion MySQL BDD</li>
+            <ul className="experienceList">
+              <li id="eduItem1" style={{ opacity: 0 }}>
+                {" "}
+              </li>
+              <li id="eduItem2" style={{ opacity: 0 }}>
+                {" "}
+              </li>
+              <li id="eduItem3" style={{ opacity: 0 }}>
+                {" "}
+              </li>
             </ul>
           </div>
         </section>
 
-        {/* Section Compétences */}
-        <div className={styles.skillsContainer}>
-          {/* Soft Skills & Skills */}
-          <section className={styles.skillsSection}>
-            <h2 className={styles.sectionTitle}>Soft Skills & Skills</h2>
-
-            <div className={styles.softSkills}>
-              <p>Empathique, Autonome, Coopératif, Créatif.</p>
-              <p>
-                Idéation, Brainstorming, Design, Maquettage, Prototypage,
-                Conception, Développement, Optimisation, Support technique.
+        {/* SKILLS & TOOLS */}
+        <div className="skillsContainer">
+          {/* SKILLS */}
+          <section className="skillsSection">
+            <h2 id="skillsTitle" className="sectionTitle">
+              Soft Skills & Skills
+            </h2>
+            <div className="softSkills">
+              <p id="softSkill1" style={{ opacity: 0 }}>
+                {" "}
+              </p>
+              <p id="softSkill2" style={{ opacity: 0 }}>
+                {" "}
               </p>
             </div>
           </section>
-
-          {/* Tools */}
-          <section className={styles.toolsSection}>
-            <h2 className={styles.sectionTitle}>Tools</h2>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>My Framework </span>
-              <span className={styles.toolList}>
-                • Vue/Nuxt3, React/Next, AngularJs
+          {/* TOOLS */}
+          <section className="toolsSection">
+            <h2 id="toolsTitle" className="sectionTitle" style={{ opacity: 0 }}>
+              Tools
+            </h2>
+            <div className="toolItem">
+              <span className="toolCategory">My Framework </span>
+              <span id="tool1" className="toolList" style={{ opacity: 0 }}>
+                {" "}
               </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>Data </span>
-              <span className={styles.toolList}>• SQL, GraphQL</span>
+            <div className="toolItem">
+              <span className="toolCategory">Data </span>
+              <span id="tool2" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>Back-end </span>
-              <span className={styles.toolList}>• Node.Js, Express</span>
+            <div className="toolItem">
+              <span className="toolCategory">Back-end </span>
+              <span id="tool3" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>Design </span>
-              <span className={styles.toolList}>• Figma, PhotoShop</span>
+            <div className="toolItem">
+              <span className="toolCategory">Design </span>
+              <span id="tool4" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>Management </span>
-              <span className={styles.toolList}>• JIRA, Trello</span>
+            <div className="toolItem">
+              <span className="toolCategory">Management </span>
+              <span id="tool5" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>Animation </span>
-              <span className={styles.toolList}>• GSAP, Motion</span>
+            <div className="toolItem">
+              <span className="toolCategory">Animation </span>
+              <span id="tool6" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>WebGL </span>
-              <span className={styles.toolList}>• Three, Tres, Fiber</span>
+            <div className="toolItem">
+              <span className="toolCategory">WebGL </span>
+              <span id="tool7" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>CMS </span>
-              <span className={styles.toolList}>• Strapi</span>
+            <div className="toolItem">
+              <span className="toolCategory">CMS </span>
+              <span id="tool8" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
-
-            <div className={styles.toolItem}>
-              <span className={styles.toolCategory}>3D </span>
-              <span className={styles.toolList}>• Blender</span>
+            <div className="toolItem">
+              <span className="toolCategory">3D </span>
+              <span id="tool9" className="toolList" style={{ opacity: 0 }}>
+                {" "}
+              </span>
             </div>
           </section>
         </div>

@@ -7,12 +7,12 @@ import {
   PerspectiveCamera,
   Environment,
   Plane,
-  OrbitControls,
   Html,
   useGLTF,
 } from "@react-three/drei";
 import React from "react";
 import { gsap } from "gsap";
+import { useHotkeys } from "react-hotkeys-hook";
 
 function EmulatorInterface({ setLoadPokemonRom }) {
   const [gbaModule, setGbaModule] = useState(null);
@@ -92,7 +92,6 @@ export default function MainScene() {
       <directionalLight intensity={1} position={[0, -20, 50]} />
       <Environment preset="sunset" />
       <PerspectiveCamera makeDefault position={[0, 0, 100]} fov={20} />
-      <OrbitControls />
       <Plane receiveShadow args={[100, 100]} position={[0, 0, 0]}>
         <meshToonMaterial color="#adb5bd" receiveShadow />
       </Plane>
@@ -139,6 +138,7 @@ function CartPkm(props) {
 useGLTF.preload("models/cartridge-pkm.glb");
 
 function Sp(props) {
+
   const { nodes, materials } = useGLTF("models/Sp.glb");
   return (
     <group {...props} dispose={null}>
@@ -194,6 +194,7 @@ function Sp(props) {
                       whileTap={{
                         scaleY: 0.9,
                       }}
+                 
                     >
                       <mesh
                         name="A_Btn_geo_Gameboy_1002_MAT_0"
@@ -201,6 +202,7 @@ function Sp(props) {
                         receiveShadow
                         geometry={nodes.A_Btn_geo_Gameboy_1002_MAT_0.geometry}
                         material={materials.Gameboy_1002_MAT}
+                 
                       />
                     </motion.group>
                     <motion.group
