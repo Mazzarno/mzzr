@@ -54,7 +54,7 @@ function MainScene() {
             luminanceSmoothing={0.01}
             height={300}
           />
-          <Noise opacity={0.1} />
+          <Noise opacity={0.2} />
           <Glitch
             delay={[6, 10]} // min and max glitch delay
             duration={[0.2, 0.5]} // min and max glitch duration
@@ -87,7 +87,6 @@ function MainScene() {
         <Menu />
         <LumosMenu />
         <Lumos />
-        <color attach="background" args={["#e9ecef"]} />
       </Canvas>
     </>
   );

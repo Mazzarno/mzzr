@@ -13,10 +13,9 @@ import Font2Letter from "./Font2Letter";
 export default function Text() {
   return (
     <>
-      <group position={[-0.2, 1.3, 0]}>
+      <group position={[0, 0, 0]}>
         <AlexisGermain />
         <FloatingLetter />
-        <PressStart />
       </group>
     </>
   );
